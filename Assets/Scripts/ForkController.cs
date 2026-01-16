@@ -13,13 +13,28 @@ public class ForkController : MonoBehaviour
     [SerializeField] private float minYScale = 1f;
     [SerializeField] private float maxYScale = 1.3f;
 
+    [Header("Prise de palette")] [SerializeField]
+    private Transform palletAttachPoint; // Point d'ancrage pour la palette
+
+    [SerializeField] private float attachThreshold = 0.15f; // Hauteur minimale pour attacher
+    [SerializeField] private float detachThreshold = 0.05f;
+
+
     private PlayerInputAction inputActions;
     private float currentHeight = 0f;
     private SpriteRenderer[] forkSprites;
     private Vector3[] originalScales;
 
-    public float CurrentHeight => currentHeight;
+    private Pallet currentPallet;
+    private Pallet palletInRange;
+    private bool isPalletAttached = false;
 
+    // Pour tracker l'état précédent
+    private bool wasAboveAttachThreshold = false;
+    private bool wasAboveDetachThreshold = false;
+    public float CurrentHeight => currentHeight;
+    public bool HasPallet => isPalletAttached;
+    public Pallet CurrentPallet => currentPallet;
 
     private void Start()
     {
@@ -30,6 +45,9 @@ public class ForkController : MonoBehaviour
         {
             originalScales[i] = forkSprites[i].transform.localScale;
         }
+
+        wasAboveAttachThreshold = currentHeight >= attachThreshold;
+        wasAboveDetachThreshold = currentHeight > detachThreshold;
     }
 
     private void Update()
@@ -38,11 +56,13 @@ public class ForkController : MonoBehaviour
         float liftInput = inputActions.Player.lift.ReadValue<float>();
 
         // Mise à jour de la hauteur
+        float previousHeight = currentHeight;
         currentHeight += liftInput * liftSpeed * Time.deltaTime;
         currentHeight = Mathf.Clamp(currentHeight, minHeight, maxHeight);
 
         // Feedback visuel : changer la couleur ou l'échelle selon la hauteur
         UpdateVisual();
+        CheckPalletAttachment();
     }
 
     private void UpdateVisual()
@@ -64,5 +84,77 @@ public class ForkController : MonoBehaviour
             // Scale : plus grand = plus haut
             forkSprites[i].transform.localScale = newScale;
         }
+    }
+
+    private void CheckPalletAttachment()
+    {
+        bool isAboveAttachThreshold = currentHeight >= attachThreshold;
+        bool isAboveDetachThreshold = currentHeight > detachThreshold;
+
+        // ATTACHER
+        if (!isPalletAttached && isAboveAttachThreshold && !wasAboveAttachThreshold)
+        {
+            if (palletInRange != null && palletInRange.AreBothForksInserted)
+            {
+                AttachPallet(palletInRange);
+            }
+            else
+            {
+                Debug.Log(
+                    $"[ForkController] Seuil atteint mais palletInRange={palletInRange}, bothForks={palletInRange?.AreBothForksInserted}");
+            }
+        }
+
+        // DÉTACHER
+        if (isPalletAttached && !isAboveDetachThreshold && wasAboveDetachThreshold)
+        {
+            DetachPallet();
+        }
+
+        wasAboveAttachThreshold = isAboveAttachThreshold;
+        wasAboveDetachThreshold = isAboveDetachThreshold;
+    }
+
+    // Appelé par la Palette quand les fourches sont insérées
+    public void RegisterPalletInRange(Pallet pallet)
+    {
+        if (!isPalletAttached)
+        {
+            palletInRange = pallet;
+            Debug.Log($"[ForkController] Palette enregistrée : {pallet.name}");
+        }
+    }
+
+    // Appelé par la Palette quand les fourches sont retirées
+    public void UnregisterPalletInRange(Pallet pallet)
+    {
+        if (palletInRange == pallet && !isPalletAttached)
+        {
+            palletInRange = null;
+            Debug.Log($"[ForkController] Palette désenregistrée : {pallet.name}");
+        }
+    }
+
+    private void AttachPallet(Pallet pallet)
+    {
+        if (pallet == null) return;
+
+        currentPallet = pallet;
+        isPalletAttached = true;
+        pallet.AttachToForks(palletAttachPoint);
+
+        Debug.Log($"[ForkController] Palette attachée !");
+    }
+
+    private void DetachPallet()
+    {
+        if (currentPallet == null) return;
+
+        currentPallet.DetachFromForks();
+        currentPallet = null;
+        isPalletAttached = false;
+        palletInRange = null;
+
+        Debug.Log($"[ForkController] Palette déposée !");
     }
 }
