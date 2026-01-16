@@ -16,8 +16,16 @@ public class ForkController : MonoBehaviour
     [Header("Prise de palette")] [SerializeField]
     private Transform palletAttachPoint; // Point d'ancrage pour la palette
 
+    [Header("Sorting Order")] [SerializeField]
+    private float heightThresholdForOverlay = 0.5f; // Hauteur à partir de laquelle les fourches passent au-dessus
+
+    [SerializeField] private int sortingOrderBelow = 0; // Sorting order quand fourches sont basses
+    [SerializeField] private int sortingOrderAbove = 10; // Sorting order quand fourches sont hautes
+
+
     [SerializeField] private float attachThreshold = 0.15f; // Hauteur minimale pour attacher
     [SerializeField] private float detachThreshold = 0.05f;
+    private bool wasAboveOverlayThreshold = false;
 
 
     private PlayerInputAction inputActions;
@@ -48,6 +56,8 @@ public class ForkController : MonoBehaviour
 
         wasAboveAttachThreshold = currentHeight >= attachThreshold;
         wasAboveDetachThreshold = currentHeight > detachThreshold;
+        // Initialise le sorting order
+        UpdateSortingOrder();
     }
 
     private void Update()
@@ -55,13 +65,17 @@ public class ForkController : MonoBehaviour
         // Lire l'input pour monter/descendre (à ajouter dans ton Input Actions)
         float liftInput = inputActions.Player.lift.ReadValue<float>();
 
+        liftInput = FilterLiftInput(liftInput);
         // Mise à jour de la hauteur
-        float previousHeight = currentHeight;
         currentHeight += liftInput * liftSpeed * Time.deltaTime;
         currentHeight = Mathf.Clamp(currentHeight, minHeight, maxHeight);
-
-        // Feedback visuel : changer la couleur ou l'échelle selon la hauteur
+// Feedback visuel : changer la couleur ou l'échelle selon la hauteur
         UpdateVisual();
+        if (!isPalletAttached)
+        {
+            UpdateSortingOrder();
+        }
+
         CheckPalletAttachment();
     }
 
@@ -156,5 +170,42 @@ public class ForkController : MonoBehaviour
         palletInRange = null;
 
         Debug.Log($"[ForkController] Palette déposée !");
+    }
+
+    private void UpdateSortingOrder()
+    {
+        bool isAboveOverlayThreshold = currentHeight >= heightThresholdForOverlay;
+
+        // Change seulement si on franchit le seuil
+        if (isAboveOverlayThreshold != wasAboveOverlayThreshold)
+        {
+            int newSortingOrder = isAboveOverlayThreshold ? sortingOrderAbove : sortingOrderBelow;
+
+            foreach (var sprite in forkSprites)
+            {
+                sprite.sortingOrder = newSortingOrder;
+            }
+
+            Debug.Log($"[ForkController] Sorting Order changé à {newSortingOrder} (hauteur: {currentHeight:F2})");
+
+            wasAboveOverlayThreshold = isAboveOverlayThreshold;
+        }
+    }
+
+
+    private float FilterLiftInput(float liftInput)
+    {
+        // Empêche de baisser les fourches au-dessus d'une palette
+        if (!isPalletAttached && palletInRange != null)
+        {
+            if (currentHeight >= heightThresholdForOverlay && liftInput < 0)
+            {
+                Debug.Log("[ForkController] ALERTE : Impossible de baisser les fourches au-dessus d'une palette !");
+                // TODO: Feedback visuel/sonore pour le joueur
+                return 0f; // Bloque la descente
+            }
+        }
+
+        return liftInput;
     }
 }
