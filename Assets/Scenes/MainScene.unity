@@ -270,11 +270,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5325810819214084463, guid: 751b572d52a4b45db9034925785ac174, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.99
+      value: -0.07300007
       objectReference: {fileID: 0}
     - target: {fileID: 5325810819214084463, guid: 751b572d52a4b45db9034925785ac174, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.85
+      value: -0.153
       objectReference: {fileID: 0}
     - target: {fileID: 5325810819214084463, guid: 751b572d52a4b45db9034925785ac174, type: 3}
       propertyPath: m_LocalPosition.z
@@ -512,7 +512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DropZone
   zoneName: "Zone de d\xE9p\xF4t"
-  zoneColor: {r: 0, g: 1, b: 0, a: 0.3}
+  zoneColor: {r: 0.032840863, g: 0.16981131, b: 0.032840863, a: 0.3}
   zoneActiveColor: {r: 0, g: 1, b: 0, a: 0.6}
   onPalletDropped:
     m_PersistentCalls:
@@ -616,7 +616,7 @@ SpriteRenderer:
   m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: ffd013972c6cc4b35954f210837d65dc, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5235849, g: 1, b: 0.57994807, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -634,7 +634,7 @@ Transform:
   m_GameObject: {fileID: 1188647704}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.92, y: 2.5, z: 0}
+  m_LocalPosition: {x: 7.94, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -725,11 +725,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3458046749789262845, guid: ca6c621972731443eb9956c6c87a5213, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.997
+      value: -7.26
       objectReference: {fileID: 0}
     - target: {fileID: 3458046749789262845, guid: ca6c621972731443eb9956c6c87a5213, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.003
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 3458046749789262845, guid: ca6c621972731443eb9956c6c87a5213, type: 3}
       propertyPath: m_LocalPosition.z
