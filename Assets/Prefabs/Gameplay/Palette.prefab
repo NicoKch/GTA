@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 113679539114795147}
   - component: {fileID: 4724930600754510561}
   - component: {fileID: 6999543270516315539}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PaletteG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6977212878266498785}
   - component: {fileID: 8010699745838768389}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FourcheZoneG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2913808968358609763}
   - component: {fileID: 5955324690924972557}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 1095023669337540307}
   - component: {fileID: 7085109444090800378}
   - component: {fileID: 2599397753394795763}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PaletteCentre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,7 +468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1904253402185263059}
   - component: {fileID: 6769637161213721089}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FourcheZoneD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3458046749789262845}
   - component: {fileID: 9092685220256396572}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Palette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 6738343512730350458}
   - component: {fileID: 6746616412320847433}
   - component: {fileID: 165612676045176457}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PaletteD
   m_TagString: Untagged
   m_Icon: {fileID: 0}

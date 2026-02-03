@@ -9,17 +9,17 @@ public class VisionManager : MonoBehaviour
     [Header("Configuration des cônes")] [SerializeField]
     private VisionCone frontCone;
 
-    private VisionCone rearCone;
+    [SerializeField] private VisionCone rearCone;
 
     [Header("Paramètres")] [SerializeField]
-    private float coneAngle = 60f;
+    private float coneAngle = 80f;
 
     private float coneDistance = 15f;
 
     private int rayCount = 30;
 
     [Header("Layers")] [SerializeField] private LayerMask obstacleLayer;
-    private LayerMask detectableLayer;
+    [SerializeField] private LayerMask detectableLayer;
 
 
     private bool isFrontViewActive = true;
@@ -56,7 +56,7 @@ public class VisionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool switchInput = inputActions.Player.switchView.ReadValue<bool>();
+        float switchInput = inputActions.Player.switchView.ReadValue<float>();
         HandleInput(switchInput);
         UpdateVision();
     }
@@ -74,9 +74,9 @@ public class VisionManager : MonoBehaviour
         }
     }
 
-    private void HandleInput(bool switchInput)
+    private void HandleInput(float switchInput)
     {
-        if (switchInput)
+        if (switchInput > 0)
         {
             SwitchView();
         }

@@ -8,6 +8,9 @@ public class VisionCone : MonoBehaviour
     [SerializeField] private Material activeConeMaterial;
     [SerializeField] private Material inactiveConeMaterial;
 
+    [Header("Couleurs")] [SerializeField] private Color activeColor = new Color(0f, 1f, 0.4f, 0.3f);
+    [SerializeField] private Color inactiveColor = new Color(0.5f, 0.5f, 0.5f, 0.15f);
+
     // Paramètres configurés par VisionManager
     private float angle;
     private float distance;
@@ -17,6 +20,7 @@ public class VisionCone : MonoBehaviour
 
     private Mesh coneMesh;
     private bool isActive = false;
+
     private HashSet<VisionTarget> visibleTargets = new HashSet<VisionTarget>();
 
     public void Initialize(float angle, float distance, int rayCount,
@@ -63,12 +67,16 @@ public class VisionCone : MonoBehaviour
 
     private void UpdateConeMesh()
     {
+        Debug.Log($"[VisionCone] obstacleLayer mask value: {obstacleLayer.value}");
         Vector3[] vertices = new Vector3[rayCount + 2];
         int[] triangles = new int[rayCount * 3];
+        Color[] colors = new Color[rayCount + 2];
+
+        Color currentColor = isActive ? activeColor : inactiveColor;
 
         // Point central (origine du cône)
         vertices[0] = Vector3.zero;
-
+        colors[0] = currentColor;
         float halfAngle = angle / 2f;
         float angleStep = angle / rayCount;
 
@@ -79,11 +87,17 @@ public class VisionCone : MonoBehaviour
 
             // Raycast pour détecter les obstacles
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance, obstacleLayer);
+            // DEBUG : Affiche si on touche quelque chose
+            if (hit.collider != null)
+            {
+                Debug.Log($"[VisionCone] HIT: {hit.collider.name} at distance {hit.distance}");
+            }
 
             float rayDistance = hit.collider != null ? hit.distance : distance;
 
             // Convertir en espace local
             vertices[i + 1] = Quaternion.Euler(0, 0, currentAngle) * Vector3.up * rayDistance;
+            colors[i + 1] = currentColor;
         }
 
         // Créer les triangles
@@ -97,6 +111,7 @@ public class VisionCone : MonoBehaviour
         coneMesh.Clear();
         coneMesh.vertices = vertices;
         coneMesh.triangles = triangles;
+        coneMesh.colors = colors;
         coneMesh.RecalculateNormals();
     }
 
