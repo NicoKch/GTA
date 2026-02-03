@@ -24,7 +24,7 @@ public class ForkController : MonoBehaviour
 
 
     [SerializeField] private float attachThreshold = 0.15f; // Hauteur minimale pour attacher
-    [SerializeField] private float detachThreshold = 0.05f;
+    [SerializeField] private float detachThreshold = 0.20f;
     private bool wasAboveOverlayThreshold = false;
 
 
@@ -71,12 +71,25 @@ public class ForkController : MonoBehaviour
         currentHeight = Mathf.Clamp(currentHeight, minHeight, maxHeight);
 // Feedback visuel : changer la couleur ou l'échelle selon la hauteur
         UpdateVisual();
-        if (!isPalletAttached)
-        {
-            UpdateSortingOrder();
-        }
+
+
+        bool wasPalletAttached = isPalletAttached; // Sauvegarde l'état avant
 
         CheckPalletAttachment();
+
+        // Log seulement si l'état a changé
+        if (wasPalletAttached != isPalletAttached)
+        {
+            Debug.Log($"[ForkController] isPalletAttached a changé : {wasPalletAttached} → {isPalletAttached}");
+            Debug.Log(
+                $"[ForkController] currentHeight={currentHeight}, attachThreshold={attachThreshold}, detachThreshold={detachThreshold}");
+        }
+
+        if (!isPalletAttached)
+        {
+            // Debug.Log(isPalletAttached);
+            UpdateSortingOrder();
+        }
     }
 
     private void UpdateVisual()
@@ -103,7 +116,7 @@ public class ForkController : MonoBehaviour
     private void CheckPalletAttachment()
     {
         bool isAboveAttachThreshold = currentHeight >= attachThreshold;
-        bool isAboveDetachThreshold = currentHeight > detachThreshold;
+        bool isBelowDetachThreshold = currentHeight < detachThreshold;
 
         // ATTACHER
         if (!isPalletAttached && isAboveAttachThreshold && !wasAboveAttachThreshold)
@@ -112,21 +125,16 @@ public class ForkController : MonoBehaviour
             {
                 AttachPallet(palletInRange);
             }
-            else
-            {
-                Debug.Log(
-                    $"[ForkController] Seuil atteint mais palletInRange={palletInRange}, bothForks={palletInRange?.AreBothForksInserted}");
-            }
         }
 
         // DÉTACHER
-        if (isPalletAttached && !isAboveDetachThreshold && wasAboveDetachThreshold)
+        if (isPalletAttached && isBelowDetachThreshold && wasAboveDetachThreshold)
         {
             DetachPallet();
         }
 
         wasAboveAttachThreshold = isAboveAttachThreshold;
-        wasAboveDetachThreshold = isAboveDetachThreshold;
+        wasAboveDetachThreshold = !isBelowDetachThreshold;
     }
 
     // Appelé par la Palette quand les fourches sont insérées
@@ -142,6 +150,8 @@ public class ForkController : MonoBehaviour
     // Appelé par la Palette quand les fourches sont retirées
     public void UnregisterPalletInRange(Pallet pallet)
     {
+        Debug.Log(
+            $"[ForkController] UnregisterPalletInRange appelé - isPalletAttached={isPalletAttached}, palletInRange={palletInRange?.name}");
         if (palletInRange == pallet && !isPalletAttached)
         {
             palletInRange = null;
@@ -151,6 +161,8 @@ public class ForkController : MonoBehaviour
 
     private void AttachPallet(Pallet pallet)
     {
+        Debug.Log(
+            $"[ForkController] AttachPallet appelé - pallet={pallet?.name}, isPalletAttached AVANT={isPalletAttached}");
         if (pallet == null) return;
 
         currentPallet = pallet;
@@ -162,6 +174,8 @@ public class ForkController : MonoBehaviour
 
     private void DetachPallet()
     {
+        Debug.Log(
+            $"[ForkController] DetachPallet() appelé ! currentHeight={currentHeight}, detachThreshold={detachThreshold}");
         if (currentPallet == null) return;
 
         currentPallet.DetachFromForks();
@@ -169,6 +183,7 @@ public class ForkController : MonoBehaviour
         isPalletAttached = false;
         palletInRange = null;
 
+        UpdateSortingOrder();
         Debug.Log($"[ForkController] Palette déposée !");
     }
 
