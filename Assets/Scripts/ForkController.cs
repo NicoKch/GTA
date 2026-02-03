@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ForkController : MonoBehaviour
@@ -27,6 +25,7 @@ public class ForkController : MonoBehaviour
     [SerializeField] private float detachThreshold = 0.20f;
     private bool wasAboveOverlayThreshold = false;
 
+    [Header("Vision")] [SerializeField] private VisionObstacle loadedPaletteVisionBlocker;
 
     private PlayerInputAction inputActions;
     private float currentHeight = 0f;
@@ -170,6 +169,15 @@ public class ForkController : MonoBehaviour
         pallet.AttachToForks(palletAttachPoint);
 
         Debug.Log($"[ForkController] Palette attachée !");
+
+        // Activer le bloqueur de vision de la palette
+        if (loadedPaletteVisionBlocker != null)
+        {
+            loadedPaletteVisionBlocker.SetObstacleActive(true);
+        }
+
+        // Notifier le VisionManager
+        VisionManager.Instance?.SetLoadObstruction(true);
     }
 
     private void DetachPallet()
@@ -185,6 +193,14 @@ public class ForkController : MonoBehaviour
 
         UpdateSortingOrder();
         Debug.Log($"[ForkController] Palette déposée !");
+
+        if (loadedPaletteVisionBlocker != null)
+        {
+            loadedPaletteVisionBlocker.SetObstacleActive(false);
+        }
+
+        // Notifier le VisionManager
+        VisionManager.Instance?.SetLoadObstruction(false);
     }
 
     private void UpdateSortingOrder()
