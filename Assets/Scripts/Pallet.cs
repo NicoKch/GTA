@@ -124,10 +124,8 @@ public class Pallet : MonoBehaviour
         }
 
         transform.SetParent(attachPoint);
-        transform.localPosition = Vector3.zero;
+        // transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
-
-        Debug.Log("[Pallet] Attachée aux fourches");
     }
 
     public void DetachFromForks()
