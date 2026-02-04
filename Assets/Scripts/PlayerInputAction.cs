@@ -118,6 +118,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""switchView"",
+                    ""type"": ""Button"",
+                    ""id"": ""2c3ef765-8b86-4bde-b2bb-e59adb36dec0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -219,6 +228,17 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""lift"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3bdb36f9-8491-4535-97e0-9134f0cbbe0c"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""switchView"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -230,6 +250,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Player_move = m_Player.FindAction("move", throwIfNotFound: true);
         m_Player_rotate = m_Player.FindAction("rotate", throwIfNotFound: true);
         m_Player_lift = m_Player.FindAction("lift", throwIfNotFound: true);
+        m_Player_switchView = m_Player.FindAction("switchView", throwIfNotFound: true);
     }
 
     ~@PlayerInputAction()
@@ -313,6 +334,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_move;
     private readonly InputAction m_Player_rotate;
     private readonly InputAction m_Player_lift;
+    private readonly InputAction m_Player_switchView;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -336,6 +358,10 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/lift".
         /// </summary>
         public InputAction @lift => m_Wrapper.m_Player_lift;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/switchView".
+        /// </summary>
+        public InputAction @switchView => m_Wrapper.m_Player_switchView;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -371,6 +397,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @lift.started += instance.OnLift;
             @lift.performed += instance.OnLift;
             @lift.canceled += instance.OnLift;
+            @switchView.started += instance.OnSwitchView;
+            @switchView.performed += instance.OnSwitchView;
+            @switchView.canceled += instance.OnSwitchView;
         }
 
         /// <summary>
@@ -391,6 +420,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @lift.started -= instance.OnLift;
             @lift.performed -= instance.OnLift;
             @lift.canceled -= instance.OnLift;
+            @switchView.started -= instance.OnSwitchView;
+            @switchView.performed -= instance.OnSwitchView;
+            @switchView.canceled -= instance.OnSwitchView;
         }
 
         /// <summary>
@@ -452,5 +484,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLift(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "switchView" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwitchView(InputAction.CallbackContext context);
     }
 }
