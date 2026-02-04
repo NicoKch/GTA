@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 19682505670679260}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.108, y: 0.037, z: 0}
+  m_LocalPosition: {x: -0.1462, y: 0.0364, z: 0}
   m_LocalScale: {x: 0.1, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -250,6 +250,8 @@ MonoBehaviour:
   meshRenderer: {fileID: 4372636220692218276}
   activeConeMaterial: {fileID: 2100000, guid: 50167e0ee15f8434091b8cf808daccc5, type: 2}
   inactiveConeMaterial: {fileID: 2100000, guid: 56c050bf57af34f1696147017dffc5ce, type: 2}
+  activeColor: {r: 0, g: 1, b: 0.4, a: 0.3}
+  inactiveColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.15}
 --- !u!33 &2848131761563567515
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1390,7 +1392,7 @@ Transform:
   m_GameObject: {fileID: 5913448166479083890}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.119099915, y: 0.037, z: 0}
+  m_LocalPosition: {x: 0.1551, y: 0.0366, z: 0}
   m_LocalScale: {x: 0.1, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1551,6 +1553,8 @@ MonoBehaviour:
   meshRenderer: {fileID: 458473074827549553}
   activeConeMaterial: {fileID: 2100000, guid: 50167e0ee15f8434091b8cf808daccc5, type: 2}
   inactiveConeMaterial: {fileID: 2100000, guid: 56c050bf57af34f1696147017dffc5ce, type: 2}
+  activeColor: {r: 0, g: 1, b: 0.4, a: 0.3}
+  inactiveColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.15}
 --- !u!33 &3062797811416847722
 MeshFilter:
   m_ObjectHideFlags: 0
