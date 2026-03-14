@@ -119,6 +119,164 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &142783873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3281564203882496191, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+  m_PrefabInstance: {fileID: 1772642920}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &142783878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142783873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bbb317006746416dba5adce6e704bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.NPC.NPCForkliftController
+  maxSpeed: 4
+  maxReverseSpeed: 2
+  acceleration: 2.5
+  deceleration: 4
+  brakeForce: 6
+  maxWheelAngle: 70
+  wheelTurnSpeed: 200
+  wheelBase: 2
+  waypoints:
+  - {fileID: 1161316161}
+  - {fileID: 626091212}
+  - {fileID: 329521987}
+  - {fileID: 739156853}
+  - {fileID: 201119181}
+  - {fileID: 1856531339}
+  - {fileID: 637100307}
+  - {fileID: 1161316161}
+  waypointReachDistance: 0.5
+  slowDownDistance: 3
+  loopWaypoints: 1
+  waitTimeAtWaypoint: 0
+  obstacleDetectionDistance: 3
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  emergencyStopDistance: 1
+  rouesArriereGauche: {fileID: 383458285}
+  rouesArriereDroite: {fileID: 299785425}
+--- !u!1 &201119180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 201119182}
+  - component: {fileID: 201119181}
+  m_Layer: 0
+  m_Name: waypoint 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &201119181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201119180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95213718c6110499f9e8eb97d091dd32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.NPC.ForkliftWaypoint
+  waitTime: 0
+  speedLimit: 0
+  nextWaypoint: {fileID: 1856531339}
+  gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  gizmoRadius: 0.5
+--- !u!4 &201119182
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201119180}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6, y: 0.07, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &208139776 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8825576114492805926, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+  m_PrefabInstance: {fileID: 743814785}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &299785425 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6846025402981650613, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+  m_PrefabInstance: {fileID: 1772642920}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &329521986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 329521988}
+  - component: {fileID: 329521987}
+  m_Layer: 0
+  m_Name: waypoint 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &329521987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329521986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95213718c6110499f9e8eb97d091dd32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.NPC.ForkliftWaypoint
+  waitTime: 0
+  speedLimit: 0
+  nextWaypoint: {fileID: 739156853}
+  gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  gizmoRadius: 0.5
+--- !u!4 &329521988
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329521986}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.56, y: 3.51, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &383458285 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8825576114492805926, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+  m_PrefabInstance: {fileID: 1772642920}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &428817593 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5668554143619272259, guid: 751b572d52a4b45db9034925785ac174, type: 3}
@@ -419,6 +577,153 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &626091211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 626091213}
+  - component: {fileID: 626091212}
+  m_Layer: 0
+  m_Name: waypoint 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &626091212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626091211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95213718c6110499f9e8eb97d091dd32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.NPC.ForkliftWaypoint
+  waitTime: 0
+  speedLimit: 0
+  nextWaypoint: {fileID: 329521987}
+  gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  gizmoRadius: 0.5
+--- !u!4 &626091213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626091211}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.84, y: 3.46, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &637100306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 637100308}
+  - component: {fileID: 637100307}
+  m_Layer: 0
+  m_Name: waypoint 6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &637100307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637100306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95213718c6110499f9e8eb97d091dd32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.NPC.ForkliftWaypoint
+  waitTime: 0
+  speedLimit: 0
+  nextWaypoint: {fileID: 1161316161}
+  gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  gizmoRadius: 0.5
+--- !u!4 &637100308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637100306}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.24, y: 0.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &739156852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 739156854}
+  - component: {fileID: 739156853}
+  m_Layer: 0
+  m_Name: waypoint 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &739156853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739156852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95213718c6110499f9e8eb97d091dd32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.NPC.ForkliftWaypoint
+  waitTime: 0
+  speedLimit: 0
+  nextWaypoint: {fileID: 201119181}
+  gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  gizmoRadius: 0.5
+--- !u!4 &739156854
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739156852}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.35, y: -2.68, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &743814785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -481,6 +786,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+--- !u!1 &1161316160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1161316162}
+  - component: {fileID: 1161316161}
+  m_Layer: 0
+  m_Name: waypoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1161316161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161316160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95213718c6110499f9e8eb97d091dd32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.NPC.ForkliftWaypoint
+  waitTime: 0
+  speedLimit: 0
+  nextWaypoint: {fileID: 626091212}
+  gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  gizmoRadius: 0.5
+--- !u!4 &1161316162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161316160}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.28, y: -2.56, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1188647704
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,7 +968,7 @@ Transform:
   m_GameObject: {fileID: 1188647704}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.94, y: 0.05, z: 0}
+  m_LocalPosition: {x: 9.83, y: 0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -767,6 +1121,43 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a216e9bd273a7406d8c884276edd88b5, type: 3}
+--- !u!1 &1366493166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100930926484370995, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+  m_PrefabInstance: {fileID: 1772642920}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1366493168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366493166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bbb317006746416dba5adce6e704bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.NPC.NPCForkliftController
+  maxSpeed: 4
+  maxReverseSpeed: 2
+  acceleration: 2.5
+  deceleration: 4
+  brakeForce: 6
+  maxWheelAngle: 60
+  wheelTurnSpeed: 100
+  wheelBase: 2
+  waypoints: []
+  waypointReachDistance: 0.5
+  slowDownDistance: 3
+  loopWaypoints: 1
+  waitTimeAtWaypoint: 2
+  obstacleDetectionDistance: 3
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  emergencyStopDistance: 1
+  rouesArriereGauche: {fileID: 208139776}
+  rouesArriereDroite: {fileID: 0}
 --- !u!1 &1530791346
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,6 +1360,121 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a216e9bd273a7406d8c884276edd88b5, type: 3}
+--- !u!1001 &1772642920
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3281564203882496191, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+      propertyPath: m_Name
+      value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325810819214084463, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325810819214084463, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325810819214084463, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325810819214084463, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325810819214084463, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325810819214084463, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325810819214084463, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325810819214084463, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325810819214084463, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325810819214084463, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6569982747904860335, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+    - {fileID: 169592754789453007, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+    - {fileID: 2432876021742866104, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3281564203882496191, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 142783878}
+    - targetCorrespondingSourceObject: {fileID: 100930926484370995, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1366493168}
+  m_SourcePrefab: {fileID: 100100000, guid: 751b572d52a4b45db9034925785ac174, type: 3}
+--- !u!1 &1856531338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1856531340}
+  - component: {fileID: 1856531339}
+  m_Layer: 0
+  m_Name: 'waypoint 5 '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1856531339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856531338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95213718c6110499f9e8eb97d091dd32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.NPC.ForkliftWaypoint
+  waitTime: 0
+  speedLimit: 0
+  nextWaypoint: {fileID: 637100307}
+  gizmoColor: {r: 0, g: 1, b: 1, a: 1}
+  gizmoRadius: 0.5
+--- !u!4 &1856531340
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856531338}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.59, y: 3.55, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1892723667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1164,3 +1670,11 @@ SceneRoots:
   - {fileID: 1262280247}
   - {fileID: 1530791352}
   - {fileID: 463096376}
+  - {fileID: 1772642920}
+  - {fileID: 1161316162}
+  - {fileID: 626091213}
+  - {fileID: 329521988}
+  - {fileID: 739156854}
+  - {fileID: 201119182}
+  - {fileID: 1856531340}
+  - {fileID: 637100308}
