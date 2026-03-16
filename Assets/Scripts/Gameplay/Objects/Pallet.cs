@@ -1,3 +1,4 @@
+using Gameplay.Player;
 using UnityEngine;
 
 public class Pallet : MonoBehaviour

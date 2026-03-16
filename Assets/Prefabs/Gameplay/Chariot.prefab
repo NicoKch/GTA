@@ -189,17 +189,16 @@ MonoBehaviour:
   minHeight: 0
   maxHeight: 3
   liftSpeed: 2
+  attachThreshold: 0.15
+  detachThreshold: 0.05
+  heightThresholdForOverlay: 0.5
   minXScale: 1
   maxXScale: 1.6
   minYScale: 1
   maxYScale: 1.3
-  palletAttachPoint: {fileID: 5330004598232624229}
-  heightThresholdForOverlay: 0.5
   sortingOrderBelow: 0
   sortingOrderAbove: 10
-  attachThreshold: 0.15
-  detachThreshold: 0.05
-  loadedPaletteVisionBlocker: {fileID: 4103765924396331081}
+  palletAttachPoint: {fileID: 5330004598232624229}
 --- !u!1 &96558680934425830
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +211,7 @@ GameObject:
   - component: {fileID: 3119182273139941430}
   - component: {fileID: 2848131761563567515}
   - component: {fileID: 4372636220692218276}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FrontVisionCone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,6 +251,8 @@ MonoBehaviour:
   inactiveConeMaterial: {fileID: 2100000, guid: 56c050bf57af34f1696147017dffc5ce, type: 2}
   activeColor: {r: 0, g: 1, b: 0.4, a: 0.3}
   inactiveColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.15}
+  dangerColor: {r: 1, g: 0.3, b: 0, a: 0.4}
+  showDebugLogs: 0
 --- !u!33 &2848131761563567515
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -410,7 +411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6846025402981650613}
   - component: {fileID: 8386680866693872814}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RoueArriereDroite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,7 +503,7 @@ GameObject:
   - component: {fileID: 2245409834562684142}
   - component: {fileID: 7012633871247553854}
   - component: {fileID: 4103765924396331081}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: LoadedPaletteBlocker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -583,6 +584,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VisionObstacle
   obstacleCollider: {fileID: 0}
+  activeOnStart: 1
+  fullyBlocking: 1
+  blockingIndicator: {fileID: 0}
 --- !u!1 &2284897174176480932
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,7 +596,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5825262560004560087}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rouesAvant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +630,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6195554248600527888}
   - component: {fileID: 173138406498172924}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RoueAvantDroite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -716,7 +720,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9138672133495024802}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rouesArriere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -841,11 +845,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5325810819214084463}
   - component: {fileID: 8858110792436841231}
-  - component: {fileID: 6741291480011436365}
-  - component: {fileID: 5431580208037498877}
-  m_Layer: 0
+  - component: {fileID: 6569982747904860335}
+  - component: {fileID: 169592754789453007}
+  m_Layer: 6
   m_Name: Chariot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -897,7 +901,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &6741291480011436365
+--- !u!114 &6569982747904860335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3281564203882496191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c3045debd2b4b448f1edf7574d3af84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Managers.VisionManager
+  frontCone: {fileID: 3119182273139941430}
+  rearCone: {fileID: 5668554143619272259}
+  coneAngle: 80
+  coneDistance: 15
+  rayCount: 30
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  detectableLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  wrongVisionGracePeriod: 2
+--- !u!114 &169592754789453007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -908,38 +936,17 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 592cdfaa61c5a49f88c99a3a51e1afb5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  m_EditorClassIdentifier: Assembly-CSharp::Gamplay.Player.PlayerMovement
   maxSpeed: 5
   maxReverseSpeed: 3
   acceleration: 3
-  deceleration: 4
-  brakeForce: 6
+  deceleration: 5
+  brakeForce: 8
   maxWheelAngle: 60
   wheelTurnSpeed: 120
   wheelBase: 2
   rouesArriereGauche: {fileID: 8825576114492805926}
   rouesArriereDroite: {fileID: 6846025402981650613}
---- !u!114 &5431580208037498877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3281564203882496191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f0f2896be496425ab3d3d9714c7f0fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VisionManager
-  frontCone: {fileID: 3119182273139941430}
-  rearCone: {fileID: 5668554143619272259}
-  coneAngle: 60
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  detectableLayer:
-    serializedVersion: 2
-    m_Bits: 1024
 --- !u!1 &3649771533195611946
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,7 +956,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6828711819177137878}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: VisionSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1284,7 +1291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8825576114492805926}
   - component: {fileID: 4508673330828473131}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RoueArriereGauche
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1515,7 +1522,7 @@ GameObject:
   - component: {fileID: 5668554143619272259}
   - component: {fileID: 3062797811416847722}
   - component: {fileID: 458473074827549553}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RearVisionCone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1555,6 +1562,8 @@ MonoBehaviour:
   inactiveConeMaterial: {fileID: 2100000, guid: 56c050bf57af34f1696147017dffc5ce, type: 2}
   activeColor: {r: 0, g: 1, b: 0.4, a: 0.3}
   inactiveColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.15}
+  dangerColor: {r: 1, g: 0.3, b: 0, a: 0.4}
+  showDebugLogs: 0
 --- !u!33 &3062797811416847722
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1622,7 +1631,7 @@ GameObject:
   m_Component:
   - component: {fileID: 215591028470698113}
   - component: {fileID: 8240669781223327354}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RoueAvantGauche
   m_TagString: Untagged
   m_Icon: {fileID: 0}

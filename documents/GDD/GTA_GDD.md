@@ -1,4 +1,4 @@
-# Serious Game Design Document
+b# Serious Game Design Document
 ## GTA - Gestion Transport Auto-élévateur
 
 **Version :** 1.0  
@@ -495,7 +495,7 @@ Futur mise à jour possible : Anglais.
 
 **Équipe projet commercial :**
 - 1 Game Designer
-- 1-2 Développeurs Unity
+- 1 Développeurs Unity
 - 1 Graphiste 2D
 - 1 Sound Designer (temps partiel)
 - 1 Testeur Q&A
