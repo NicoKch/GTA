@@ -241,21 +241,15 @@ namespace Gamplay.Player
 
         private float GetMoveInput()
         {
-            if (inputActions != null)
-            {
-                return inputActions.Player.move.ReadValue<float>();
-            }
-
+            if (InputManager.Instance != null) return InputManager.Instance.GetMove();
+            if (inputActions != null) return inputActions.Player.move.ReadValue<float>();
             return 0f;
         }
 
         private float GetRotateInput()
         {
-            if (inputActions != null)
-            {
-                return inputActions.Player.rotate.ReadValue<float>();
-            }
-
+            if (InputManager.Instance != null) return InputManager.Instance.GetRotate();
+            if (inputActions != null) return inputActions.Player.rotate.ReadValue<float>();
             return 0f;
         }
 
