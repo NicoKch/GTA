@@ -1,3 +1,4 @@
+using Gameplay.Player;
 using Managers;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -19,8 +20,13 @@ public class MobileInputController : MonoBehaviour
     [Header("Bouton vue")] [SerializeField]
     private GameObject btnSwitchView;
 
+    [Header("Bouton klaxon")] [SerializeField]
+    private GameObject btnHorn;
+
     private bool fwdHeld, bwdHeld, leftHeld, rightHeld;
     private bool liftUpHeld, liftDownHeld;
+
+    private HornController hornController;
 
     private void Start()
     {
@@ -40,9 +46,15 @@ public class MobileInputController : MonoBehaviour
         SetupButton(btnLiftUp, () => liftUpHeld = true, () => liftUpHeld = false);
         SetupButton(btnLiftDown, () => liftDownHeld = true, () => liftDownHeld = false);
 
-        // Vue : appel direct au VisionManager sur press (pas besoin d'override d'input)
+        // Vue : appel direct au VisionManager sur press
         SetupButton(btnSwitchView,
             onPress: () => VisionManager.Instance?.SwitchView(),
+            onRelease: () => { });
+
+        // Klaxon : impulsion sur press
+        hornController = FindFirstObjectByType<HornController>();
+        SetupButton(btnHorn,
+            onPress: () => hornController?.TriggerHorn(),
             onRelease: () => { });
     }
 

@@ -51,6 +51,10 @@ namespace Gameplay.NPC
         private bool isWaiting = false;
         private bool isActive = true;
 
+        // Arrêt temporaire suite à un klaxon (indépendant du système waypoint)
+        private bool isHonkStopped = false;
+        private float honkStopTimer = 0f;
+
         // Propriétés publiques
         public float CurrentSpeed => currentSpeed;
         public float MaxSpeed => maxSpeed;
@@ -104,6 +108,16 @@ namespace Gameplay.NPC
                 return;
             }
 
+            // Arrêt klaxon : prioritaire sur la navigation
+            if (isHonkStopped)
+            {
+                honkStopTimer -= Time.deltaTime;
+                if (honkStopTimer <= 0f)
+                    isHonkStopped = false;
+                UpdateWheelVisuals();
+                return;
+            }
+
             if (isWaiting)
             {
                 HandleWaiting();
@@ -124,6 +138,14 @@ namespace Gameplay.NPC
             if (GameManager.Instance != null && GameManager.Instance.CurrentState != GameManager.GameState.Playing)
             {
                 rb.linearVelocity = Vector2.zero;
+                return;
+            }
+
+            // Arrêt klaxon : stoppe la physique sans avancer le waypoint
+            if (isHonkStopped)
+            {
+                rb.linearVelocity = Vector2.zero;
+                currentSpeed = Mathf.MoveTowards(currentSpeed, 0f, brakeForce * Time.fixedDeltaTime);
                 return;
             }
 
@@ -358,6 +380,16 @@ namespace Gameplay.NPC
             isActive = false;
             currentSpeed = 0f;
             rb.linearVelocity = Vector2.zero;
+        }
+
+        /// <summary>
+        /// Arrête le NPC temporairement suite à un klaxon (sans perturber la navigation)
+        /// </summary>
+        public void HonkReaction(float duration)
+        {
+            isHonkStopped = true;
+            // Si déjà stoppé, prolonge seulement si la nouvelle durée est plus longue
+            honkStopTimer = Mathf.Max(honkStopTimer, duration);
         }
 
         /// <summary>
