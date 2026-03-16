@@ -45,6 +45,23 @@ namespace Managers
 
         #endregion
 
+        #region Mobile Overrides
+
+        // null = pas d'override, le clavier prend la main
+        private float? _moveOverride = null;
+        private float? _rotateOverride = null;
+        private float? _liftOverride = null;
+
+        public void SetMoveOverride(float? value)   => _moveOverride = value;
+        public void SetRotateOverride(float? value) => _rotateOverride = value;
+        public void SetLiftOverride(float? value)   => _liftOverride = value;
+
+        public float GetMove()   => _moveOverride   ?? inputActions.Player.move.ReadValue<float>();
+        public float GetRotate() => _rotateOverride ?? inputActions.Player.rotate.ReadValue<float>();
+        public float GetLift()   => _liftOverride   ?? inputActions.Player.lift.ReadValue<float>();
+
+        #endregion
+
         #region Initialization
 
         private void InitializeInputs()

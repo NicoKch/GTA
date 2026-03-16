@@ -183,11 +183,8 @@ namespace Gameplay.Player
 
         private float GetLiftInput()
         {
-            if (inputActions != null)
-            {
-                return inputActions.Player.lift.ReadValue<float>();
-            }
-
+            if (InputManager.Instance != null) return InputManager.Instance.GetLift();
+            if (inputActions != null) return inputActions.Player.lift.ReadValue<float>();
             return 0f;
         }
 

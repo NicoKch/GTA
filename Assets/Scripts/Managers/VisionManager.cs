@@ -185,7 +185,7 @@ namespace Managers
         /// <summary>
         /// Bascule entre la vue avant et arrière
         /// </summary>
-        private void SwitchView()
+        public void SwitchView()
         {
             isFrontViewActive = !isFrontViewActive;
             SetActiveView(isFrontViewActive);
