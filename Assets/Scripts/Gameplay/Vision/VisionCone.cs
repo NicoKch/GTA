@@ -208,7 +208,8 @@ namespace Gameplay.Vision
             {
                 if (collider == null) continue;
 
-                VisionTarget target = collider.GetComponent<VisionTarget>();
+                VisionTarget target = collider.GetComponentInParent<VisionTarget>();
+                if (target == null) target = collider.GetComponentInChildren<VisionTarget>();
                 if (target == null) continue;
 
                 Vector2 directionToTarget = (collider.transform.position - transform.position).normalized;
