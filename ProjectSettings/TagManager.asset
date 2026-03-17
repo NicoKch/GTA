@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Fork
   - Pallet
+  - NPC
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -18,8 +20,8 @@ TagManager:
   - Fork
   - VisionObstacle
   - VisionTarget
-  - 
-  - 
+  - NPC
+  - Wall
   - 
   - 
   - 
