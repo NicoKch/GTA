@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Managers
 {
@@ -18,12 +19,36 @@ namespace Managers
             {
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
+                SceneManager.sceneLoaded += OnSceneLoaded;
                 InitializeGame();
             }
             else
             {
                 Destroy(gameObject);
             }
+        }
+
+        private void OnDestroy()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (scene.name != "MainScene") return;
+
+            // Recharge les références qui appartiennent à la scène
+            missionManager = FindFirstObjectByType<MissionManager>();
+            safetyManager  = FindFirstObjectByType<SafetyManager>();
+            uiManager      = FindFirstObjectByType<UIManager>();
+            audioManager   = FindFirstObjectByType<AudioManager>();
+
+            // Remet le jeu en état Playing (reset depuis une éventuelle pause)
+            currentState = GameState.Playing;
+            Time.timeScale = 1f;
+
+            if (autoStartGame)
+                StartGame();
         }
 
         #endregion
