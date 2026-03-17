@@ -82,6 +82,18 @@ public class MobileInputController : MonoBehaviour
         InputManager.Instance.SetLiftOverride(liftVal != 0f ? liftVal : null);
     }
 
+    private void OnDisable()
+    {
+        // Réinitialise les états quand le HUD se cache (pause, game over...)
+        fwdHeld = bwdHeld = leftHeld = rightHeld = false;
+        liftUpHeld = liftDownHeld = false;
+
+        if (InputManager.Instance == null) return;
+        InputManager.Instance.SetMoveOverride(null);
+        InputManager.Instance.SetRotateOverride(null);
+        InputManager.Instance.SetLiftOverride(null);
+    }
+
     private void OnDestroy()
     {
         // Nettoyage si l'objet est détruit pendant le jeu
