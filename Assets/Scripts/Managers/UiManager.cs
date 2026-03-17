@@ -81,8 +81,10 @@ namespace Managers
             }
 
             // État initial
+            Debug.Log($"[UIManager] Start — hudPanel: {hudPanel}, pausePanel: {pausePanel}");
             HideAllPanels();
             ShowHUD();
+            Debug.Log($"[UIManager] Après ShowHUD — HUD actif: {hudPanel?.activeSelf}");
         }
 
         private void Update()
@@ -292,6 +294,11 @@ namespace Managers
 
         #region Button Handlers (à connecter via l'Inspector)
 
+        public void OnPauseButtonClicked()
+        {
+            GameManager.Instance?.PauseGame();
+        }
+
         public void OnResumeButtonClicked()
         {
             GameManager.Instance?.ResumeGame();
@@ -299,13 +306,23 @@ namespace Managers
 
         public void OnRestartButtonClicked()
         {
+            Time.timeScale = 1f;
             GameManager.Instance?.RestartGame();
         }
 
         public void OnMainMenuButtonClicked()
         {
             Time.timeScale = 1f;
-            UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+            SceneFader.GetOrCreate().FadeToScene("MainMenu");
+        }
+
+        public void OnQuitButtonClicked()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
         }
 
         #endregion
