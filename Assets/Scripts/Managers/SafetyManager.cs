@@ -120,11 +120,11 @@ namespace Managers
             if (forkController == null || playerMovement == null) return;
 
             // Si on se déplace avec la charge trop haute
-            bool isMoving = Mathf.Abs(playerMovement.CurrentSpeed) > 0.1f;
+            bool isMovingForward = playerMovement.CurrentSpeed > 0.1f;
             bool hasLoad = forkController.HasPallet;
             bool loadTooHigh = forkController.CurrentHeight > maxLoadHeightMoving;
 
-            if (isMoving && hasLoad && loadTooHigh)
+            if (isMovingForward && hasLoad && loadTooHigh)
             {
                 ReportViolationInternal(SafetyViolationType.LoadTooHigh, penaltyLoadTooHigh);
             }
