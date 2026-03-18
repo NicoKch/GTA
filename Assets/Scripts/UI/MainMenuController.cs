@@ -7,11 +7,11 @@ using UnityEngine;
 /// </summary>
 public class MainMenuController : MonoBehaviour
 {
-    [Header("Navigation")]
-    [SerializeField] private string gameSceneName = "MainScene";
+    [Header("Navigation")] [SerializeField]
+    private string gameSceneName = "level 1";
 
-    [Header("Transition")]
-    [SerializeField] private float fadeDuration = 0.5f;
+    [Header("Transition")] [SerializeField]
+    private float fadeDuration = 0.5f;
 
     private void Start()
     {

@@ -35,7 +35,7 @@ namespace Managers
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            if (scene.name != "MainScene") return;
+            if (scene.name == "MainMenu") return;
 
             // Recharge les références qui appartiennent à la scène
             missionManager = FindFirstObjectByType<MissionManager>();

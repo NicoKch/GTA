@@ -10628,7 +10628,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1205710845455762399, guid: e76c70dec37ec4aa38aac0f58a9c4408, type: 3}
       propertyPath: visibilityBehavior
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1850268622474146919, guid: e76c70dec37ec4aa38aac0f58a9c4408, type: 3}
       propertyPath: m_LocalPosition.x

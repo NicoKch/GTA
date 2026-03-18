@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fec408dfde2445098fe6babe2566ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuController
-  gameSceneName: MainScene
+  gameSceneName: Level 1
   fadeDuration: 0.5
 --- !u!4 &56571722
 Transform:

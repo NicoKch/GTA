@@ -321,7 +321,12 @@ namespace Managers
         public void OnNextLevelButtonClicked()
         {
             Time.timeScale = 1f;
-            GameManager.Instance?.RestartGame();
+            int nextIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1;
+            int sceneCount = UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings;
+            if (nextIndex < sceneCount)
+                SceneFader.GetOrCreate().FadeToScene(nextIndex);
+            else
+                SceneFader.GetOrCreate().FadeToScene("MainMenu");
         }
 
         public void OnQuitButtonClicked()
