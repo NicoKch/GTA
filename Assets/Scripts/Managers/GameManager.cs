@@ -136,6 +136,7 @@ namespace Managers
 
             // Réinitialise les systèmes
             missionManager?.ResetMission();
+            missionManager?.StartMission();
             safetyManager?.ResetViolations();
         }
 

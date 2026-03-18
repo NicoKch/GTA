@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,6 +16,7 @@ public class DropZone : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Pallet palletInZone;
     private bool hasPalletDeposited;
+    private bool isBeingCleared;
 
     public bool HasPallet => hasPalletDeposited;
     public Pallet CurrentPallet => palletInZone;
@@ -48,33 +50,46 @@ public class DropZone : MonoBehaviour
         {
             Debug.Log($"[DropZone] {zoneName} - Palette '{pallet.name}' sort de la zone");
 
-            // Si la palette était déposée et qu'elle part, c'est qu'on l'a reprise
-            if (hasPalletDeposited)
+            // Si la palette était déposée et qu'elle part manuellement (pas détruite après livraison)
+            if (hasPalletDeposited && !isBeingCleared)
             {
                 hasPalletDeposited = false;
                 onPalletPickedUp?.Invoke(pallet);
                 Debug.Log($"[DropZone] {zoneName} - Palette reprise !");
+                palletInZone = null;
+                UpdateVisual();
             }
-
-            palletInZone = null;
-            UpdateVisual();
         }
     }
 
     private void Update()
     {
         // Vérifie si une palette dans la zone vient d'être déposée (n'est plus attachée)
-        if (palletInZone != null && !hasPalletDeposited)
+        if (palletInZone != null && !hasPalletDeposited && !isBeingCleared)
         {
             if (!palletInZone.IsAttached)
             {
-                // La palette vient d'être déposée !
                 hasPalletDeposited = true;
                 onPalletDropped?.Invoke(palletInZone);
                 Debug.Log($"[DropZone] {zoneName} - Palette déposée avec succès !");
                 UpdateVisual();
+                StartCoroutine(ClearAfterDelivery(palletInZone));
             }
         }
+    }
+
+    private IEnumerator ClearAfterDelivery(Pallet delivered)
+    {
+        isBeingCleared = true;
+        yield return new WaitForSeconds(0.5f);
+
+        if (delivered != null)
+            Destroy(delivered.gameObject);
+
+        hasPalletDeposited = false;
+        palletInZone = null;
+        isBeingCleared = false;
+        UpdateVisual();
     }
 
     private void UpdateVisual()

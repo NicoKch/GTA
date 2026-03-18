@@ -49,6 +49,9 @@ namespace Managers
         [SerializeField] private GameObject missionCompletePanel;
         [SerializeField] private GameObject violationWarningPanel;
 
+        [Header("Mission Complete")] [SerializeField]
+        private TextMeshProUGUI finalScoreText;
+
         #endregion
 
         #region UI References - Warning
@@ -283,10 +286,9 @@ namespace Managers
         {
             missionCompletePanel?.SetActive(true);
 
-            // Afficher le score final
-            if (MissionManager.Instance != null)
+            if (MissionManager.Instance != null && finalScoreText != null)
             {
-                Debug.Log($"[UIManager] Score final: {MissionManager.Instance.CurrentScore}");
+                finalScoreText.text = $"Score : {MissionManager.Instance.CurrentScore}";
             }
         }
 
@@ -314,6 +316,12 @@ namespace Managers
         {
             Time.timeScale = 1f;
             SceneFader.GetOrCreate().FadeToScene("MainMenu");
+        }
+
+        public void OnNextLevelButtonClicked()
+        {
+            Time.timeScale = 1f;
+            GameManager.Instance?.RestartGame();
         }
 
         public void OnQuitButtonClicked()
