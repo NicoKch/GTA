@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8187889532431119170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7658366453307269114}
+  - component: {fileID: 5885554844694262182}
+  - component: {fileID: 1538956023774490375}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7658366453307269114
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8187889532431119170}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.64494, y: -1.15733, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5885554844694262182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8187889532431119170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4e0617cfdab476eb071f546895599cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Managers.UIManager
+  scoreText: {fileID: 0}
+  timerText: {fileID: 0}
+  deliveriesText: {fileID: 0}
+  progressBar: {fileID: 0}
+  speedGauge: {fileID: 0}
+  forkHeightIndicator: {fileID: 0}
+  hudPanel: {fileID: 9159620832802309591, guid: f24d8d2ac19b44b9696f968219f83c52, type: 3}
+  pausePanel: {fileID: 6351212929426821230, guid: a779b5c640f344900ac585932818e4e7, type: 3}
+  gameOverPanel: {fileID: 1921841972494648304, guid: 1127fd2bb1c10460e8b5667a31fc029d, type: 3}
+  missionCompletePanel: {fileID: 2643316391458606683, guid: 56a788f3bf7a042f69d9e20bcae6a7b7, type: 3}
+  violationWarningPanel: {fileID: 610107803228961565, guid: 9ec9bf6e0736e40b3b4b4a0740f67cee, type: 3}
+  finalScoreText: {fileID: 0}
+  violationText: {fileID: 0}
+  violationIcon: {fileID: 0}
+  warningDisplayDuration: 2
+--- !u!114 &1538956023774490375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8187889532431119170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60403c29f4e51417d9be16b26a284c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneEntryFader
+  fadeDuration: 0.5
